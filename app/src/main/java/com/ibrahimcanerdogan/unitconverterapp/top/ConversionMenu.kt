@@ -23,7 +23,8 @@ import com.ibrahimcanerdogan.unitconverterapp.Conversion
 @Composable
 fun ConversionMenu(
     list: List<Conversion>,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    convert : (Conversion) -> Unit
 ) {
     var displayingText by remember { mutableStateOf("Select Conversion Type") }
     var textFieldSize by remember { mutableStateOf(Size.Zero) }
@@ -66,6 +67,7 @@ fun ConversionMenu(
                 DropdownMenuItem(onClick = {
                     displayingText = conversion.description
                     expanded = false
+                    convert(conversion)
                 }) {
                     Text(text = conversion.description, fontSize = 24.sp, fontWeight = FontWeight.Bold)
                 }

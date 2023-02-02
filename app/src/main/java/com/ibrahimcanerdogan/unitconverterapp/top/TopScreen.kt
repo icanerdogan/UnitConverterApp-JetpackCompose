@@ -2,10 +2,21 @@ package com.ibrahimcanerdogan.unitconverterapp.top
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import com.ibrahimcanerdogan.unitconverterapp.Conversion
 
 @Composable
 fun TopScreen(list: List<Conversion>){
-    ConversionMenu(list)
+    val selectedConversion : MutableState<Conversion?> = remember { mutableStateOf(null) }
+    val inputText : MutableState<String> = remember { mutableStateOf("") }
 
+    ConversionMenu(list){
+        selectedConversion.value = it
+    }
+
+    selectedConversion.value?.let {
+        InputBlock(conversion = it, inputText = inputText)
+    }
 }
