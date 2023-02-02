@@ -41,7 +41,7 @@ fun InputBlock(
                 onValueChange = {
                     inputText.value = it
                 },
-                modifier = modifier.fillMaxWidth(0.65F),
+                modifier = modifier.fillMaxWidth(0.60F),
                 keyboardOptions = KeyboardOptions(
                     capitalization = KeyboardCapitalization.None,
                     autoCorrect = true,
@@ -57,7 +57,7 @@ fun InputBlock(
                 text = conversion.convertFrom,
                 fontSize = 24.sp,
                 modifier = modifier.padding(10.dp, 30.dp, 0.dp, 0.dp)
-                    .fillMaxWidth(0.35F)
+                    .fillMaxWidth(0.40F)
             )
         }
         Spacer(modifier = modifier.height(20.dp))
@@ -68,8 +68,8 @@ fun InputBlock(
             modifier = modifier.fillMaxWidth(1F)
         ){
             Text(
-                text = "Convert",
-                fontSize = 36.sp,
+                text = "CONVERT",
+                fontSize = 32.sp,
                 fontWeight =  FontWeight.Bold,
                 color = Color.Blue
             )
