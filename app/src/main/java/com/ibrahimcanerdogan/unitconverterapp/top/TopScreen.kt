@@ -1,5 +1,6 @@
 package com.ibrahimcanerdogan.unitconverterapp.top
 
+import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
@@ -17,6 +18,8 @@ fun TopScreen(list: List<Conversion>){
     }
 
     selectedConversion.value?.let {
-        InputBlock(conversion = it, inputText = inputText)
+        InputBlock(conversion = it, inputText = inputText) {
+            // TODO : Get value
+        }
     }
 }
