@@ -1,4 +1,4 @@
-package com.ibrahimcanerdogan.unitconverterapp.history
+package com.ibrahimcanerdogan.unitconverterapp.view.history
 
 import androidx.compose.runtime.Composable
 

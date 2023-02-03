@@ -1,4 +1,4 @@
-package com.ibrahimcanerdogan.unitconverterapp
+package com.ibrahimcanerdogan.unitconverterapp.data
 
 data class Conversion(
     val id : Int,

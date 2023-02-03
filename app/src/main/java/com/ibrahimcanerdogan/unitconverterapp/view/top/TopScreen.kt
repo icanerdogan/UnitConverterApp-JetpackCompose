@@ -1,17 +1,18 @@
-package com.ibrahimcanerdogan.unitconverterapp.top
+package com.ibrahimcanerdogan.unitconverterapp.view.top
 
-import android.util.Log
-import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import com.ibrahimcanerdogan.unitconverterapp.Conversion
+import com.ibrahimcanerdogan.unitconverterapp.data.Conversion
 import java.math.RoundingMode
 import java.text.DecimalFormat
 
 @Composable
-fun TopScreen(list: List<Conversion>){
+fun TopScreen(
+    list: List<Conversion>,
+    save : (String, String) -> Unit
+) {
 
     val selectedConversion : MutableState<Conversion?> = remember { mutableStateOf(null) }
     val inputText : MutableState<String> = remember { mutableStateOf("") }
@@ -19,6 +20,7 @@ fun TopScreen(list: List<Conversion>){
 
     ConversionMenu(list){
         selectedConversion.value = it
+        typedValue.value = "0.0"
     }
 
     selectedConversion.value?.let {
@@ -39,6 +41,7 @@ fun TopScreen(list: List<Conversion>){
 
         val convertFromText = "${typedValue.value} ${selectedConversion.value!!.convertFrom}"
         val convertToText = "$roundedResult ${selectedConversion.value!!.convertTo}"
+        save(convertFromText, convertToText)
         ResultBlock(convertFromText, convertToText)
     }
 }

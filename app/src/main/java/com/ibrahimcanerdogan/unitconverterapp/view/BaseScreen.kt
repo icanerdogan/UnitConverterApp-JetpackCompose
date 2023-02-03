@@ -1,4 +1,4 @@
-package com.ibrahimcanerdogan.unitconverterapp
+package com.ibrahimcanerdogan.unitconverterapp.view
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -8,18 +8,21 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.ibrahimcanerdogan.unitconverterapp.history.HistoryScreen
-import com.ibrahimcanerdogan.unitconverterapp.top.TopScreen
+import com.ibrahimcanerdogan.unitconverterapp.view.history.HistoryScreen
+import com.ibrahimcanerdogan.unitconverterapp.view.top.TopScreen
 
 @Composable
 fun BaseScreen(
+    factory: ConverterViewModelFactory,
     modifier: Modifier = Modifier,
-    converterViewModel : ConverterViewModel = viewModel()
+    converterViewModel : ConverterViewModel = viewModel(factory = factory)
 ) {
     val conversionList = converterViewModel.getConversions()
 
     Column(modifier = modifier.padding(30.dp)) {
-        TopScreen(conversionList)
+        TopScreen(conversionList) { convertFromText, convertToText ->
+            converterViewModel.addResult(convertFromText, convertToText)
+        }
         Spacer(modifier = modifier.height(20.dp))
         HistoryScreen()
     }

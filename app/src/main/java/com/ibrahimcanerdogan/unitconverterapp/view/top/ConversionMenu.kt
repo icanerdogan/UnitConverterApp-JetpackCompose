@@ -1,8 +1,7 @@
-package com.ibrahimcanerdogan.unitconverterapp.top
+package com.ibrahimcanerdogan.unitconverterapp.view.top
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.*
@@ -18,7 +17,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.unit.toSize
-import com.ibrahimcanerdogan.unitconverterapp.Conversion
+import com.ibrahimcanerdogan.unitconverterapp.data.Conversion
 
 @Composable
 fun ConversionMenu(
