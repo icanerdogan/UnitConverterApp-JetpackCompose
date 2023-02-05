@@ -1,9 +1,6 @@
 package com.ibrahimcanerdogan.unitconverterapp.view.convert
 
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import com.ibrahimcanerdogan.unitconverterapp.data.Conversion
 import java.math.RoundingMode
 import java.text.DecimalFormat
@@ -11,12 +8,14 @@ import java.text.DecimalFormat
 @Composable
 fun TopScreen(
     list: List<Conversion>,
+    selectedConversion : MutableState<Conversion?>,
+    inputText : MutableState<String>,
+    typedValue : MutableState<String>,
     save : (String, String) -> Unit
 ) {
 
-    val selectedConversion : MutableState<Conversion?> = remember { mutableStateOf(null) }
-    val inputText : MutableState<String> = remember { mutableStateOf("") }
-    val typedValue = remember { mutableStateOf("0.0") }
+    // fix calculate when screen rotation.
+    var toSave by remember { mutableStateOf(false) }
 
     ConversionMenu(list){
         selectedConversion.value = it
@@ -26,6 +25,7 @@ fun TopScreen(
     selectedConversion.value?.let {
         InputBlock(conversion = it, inputText = inputText) {
             typedValue.value = it
+            toSave = true
         }
     }
 
@@ -41,7 +41,12 @@ fun TopScreen(
 
         val convertFromText = "${typedValue.value} ${selectedConversion.value!!.convertFrom}"
         val convertToText = "$roundedResult ${selectedConversion.value!!.convertTo}"
-        save(convertFromText, convertToText)
+
+        if (toSave) {
+            save(convertFromText, convertToText)
+            toSave = false
+        }
+
         ResultBlock(convertFromText, convertToText)
     }
 }

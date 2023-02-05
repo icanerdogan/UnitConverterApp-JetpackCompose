@@ -22,7 +22,12 @@ fun BaseScreen(
     val historyList = converterViewModel.resultList.collectAsState(initial = emptyList())
 
     Column(modifier = modifier.padding(30.dp)) {
-        TopScreen(conversionList) { convertFromText, convertToText ->
+        TopScreen(conversionList,
+            converterViewModel.selectedConversion,
+            converterViewModel.inputText,
+            converterViewModel.typedValue
+        )
+        { convertFromText, convertToText ->
             converterViewModel.addResult(convertFromText, convertToText)
         }
         Spacer(modifier = modifier.height(20.dp))
