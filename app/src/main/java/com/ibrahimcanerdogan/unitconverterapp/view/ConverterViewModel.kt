@@ -1,5 +1,6 @@
 package com.ibrahimcanerdogan.unitconverterapp.view
 
+import android.view.MenuItem
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ibrahimcanerdogan.unitconverterapp.data.Conversion
@@ -21,9 +22,23 @@ class ConverterViewModel(
         Conversion(6,"Kilometers to Miles","KM","MI",0.621371)
     )
 
+    val resultList = repository.getSavedResults()
+
     fun addResult(message1 : String, message2: String) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.insertResult(ConversionResult(0, message1, message2))
+        }
+    }
+
+    fun removeResult(item: ConversionResult) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteResult(item)
+        }
+    }
+
+    fun clearAllResults() {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteAllResults()
         }
     }
 }
