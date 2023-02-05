@@ -13,7 +13,9 @@ import androidx.room.RoomDatabase
 abstract class ConverterDatabase() : RoomDatabase() {
 
     abstract val converterDAO : ConverterDAO
-    companion object {
+
+/*    companion object {
+        // Use AppModule provideConverterDatabase functions.
         @Volatile
         private var INSTANCE : ConverterDatabase? = null
         fun getInstance(context: Context) : ConverterDatabase {
@@ -29,5 +31,5 @@ abstract class ConverterDatabase() : RoomDatabase() {
                 return instance
             }
         }
-    }
+    }*/
 }

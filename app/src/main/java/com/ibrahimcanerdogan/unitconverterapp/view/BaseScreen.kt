@@ -10,7 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.ibrahimcanerdogan.unitconverterapp.view.history.HistoryScreen
-import com.ibrahimcanerdogan.unitconverterapp.view.top.TopScreen
+import com.ibrahimcanerdogan.unitconverterapp.view.convert.TopScreen
 
 @Composable
 fun BaseScreen(
